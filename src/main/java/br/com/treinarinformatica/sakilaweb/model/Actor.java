@@ -15,9 +15,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "actor")
 public class Actor implements Serializable {
-    @Column(name = "actor_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "actor_id")
     private int actor_id;
     
     @Column(name = "first_name")

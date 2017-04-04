@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>
+            Actor
+        </title>
+    </h:head>
+    <h:body>
+        <h:form id="formListActor">
+            <h:panelGroup layout="block" rendered="#{actorBean.currentState== 'LIST'}">
+
+                <p:commandButton value="New actor" action="#{actorBean.newFilm()}" update=":formListActor, :formCreateActor"/>
+
+                <p:dataTable value="#{actorBean.actorList}" var="actor">
+                    <p:column headerText="ID">
+                        #{actor.actor_id}
+                    </p:column>
+                    <p:column headerText="First name">
+                        #{actor.first_name}
+                    </p:column>
+                    <p:column headerText="Last name">
+                        #{actor.last_name}
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+        </h:form>
+        <h:form id="formCreateActor">
+            <p:messages/>
+            <h:panelGroup layout="block" rendered="#{actorBean.currentState == 'CREATE'}">
+                <h:panelGrid columns="2" >
+                    <p:outputLabel value="First name"/>
+                    <p:inputText value="#{actorBean.actor.first_name}" size="40"/>
+                    <p:outputLabel value="Last name"/>
+                    <p:inputText value="#{actorBean.actor.last_name}" size="40"/>
+                </h:panelGrid>
+                <p:commandButton value="Save" action="#{actorBean.save()}" 
+                                 update=":formListActor,:formCreateActor"
+                                 process=":formCreateActor"/>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
