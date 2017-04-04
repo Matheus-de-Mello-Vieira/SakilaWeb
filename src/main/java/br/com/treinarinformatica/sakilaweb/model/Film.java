@@ -24,7 +24,8 @@ public class Film implements Serializable{
     private Integer id;
     @Column(name = "title")
     private String title;
-
+    @Column(name ="description")
+    private String description;
     /**
      * @return the id
      */
@@ -51,6 +52,20 @@ public class Film implements Serializable{
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

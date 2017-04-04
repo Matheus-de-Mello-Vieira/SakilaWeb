@@ -5,26 +5,26 @@
  */
 package br.com.treinarinformatica.sakilaweb.service;
 
-
+import br.com.treinarinformatica.sakilaweb.model.Actor;
 import br.com.treinarinformatica.sakilaweb.model.Film;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author ADM
  */
 @Stateless
-public class FilmService {
+public class ActorService {
     @PersistenceContext
     private EntityManager em;
     
-    public List<Film> listAll(){
-        return em.createQuery("Select f from Film f order by f.film_id").getResultList();
+    public List<Actor> listAll(){
+        return em.createQuery("Select c from actor c").getResultList();
     }
-    public void saveOrUpdate(Film film){
-        em.persist(film);
-    }
-            
+    public void saveOrUpdate(Actor actor){
+        em.persist(actor);
+    }   
 }
