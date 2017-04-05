@@ -22,7 +22,7 @@ public class ActorService {
     private EntityManager em;
     
     public List<Actor> listAll(){
-        return em.createQuery("Select c from actor c").getResultList();
+        return em.createQuery("Select c from Actor c").getResultList();
     }
     public void saveOrUpdate(Actor actor){
         em.persist(actor);

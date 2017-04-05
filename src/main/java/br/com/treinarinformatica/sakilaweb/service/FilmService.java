@@ -21,7 +21,7 @@ public class FilmService {
     private EntityManager em;
     
     public List<Film> listAll(){
-        return em.createQuery("Select f from Film f order by f.film_id").getResultList();
+        return em.createQuery("Select f from Film f order by f.id").getResultList();
     }
     public void saveOrUpdate(Film film){
         em.persist(film);
