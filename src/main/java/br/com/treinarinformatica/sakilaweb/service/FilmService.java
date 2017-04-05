@@ -26,5 +26,9 @@ public class FilmService {
     public void saveOrUpdate(Film film){
         em.persist(film);
     }
+
+    public void delete(Integer filmId) {
+        em.remove(em.find(Film.class, filmId));
+    }
             
 }
