@@ -9,8 +9,12 @@ import br.com.treinarinformatica.sakilaweb.model.Film;
 import br.com.treinarinformatica.sakilaweb.service.FilmService;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -24,11 +28,18 @@ import javax.ws.rs.core.Response;
 public class FilmWS {
     @EJB
     private FilmService filmService;
-    public void save(){
-        
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response save(Film film){
+        filmService.saveOrUpdate(film);
+        return Response.ok().build();
     }
-    public void delete(){
-        
+    
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam("id") Integer filmId){
+        filmService.delete(filmId);
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)

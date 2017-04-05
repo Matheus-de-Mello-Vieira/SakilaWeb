@@ -30,5 +30,7 @@ public class FilmService {
     public void delete(Integer filmId) {
         em.remove(em.find(Film.class, filmId));
     }
-            
+    public Film findById(Integer filmId){
+        return em.find(Film.class, filmId);
+    }        
 }
