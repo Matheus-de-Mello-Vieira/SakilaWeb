@@ -6,7 +6,6 @@
 package br.com.treinarinformatica.sakilaweb.service;
 
 import br.com.treinarinformatica.sakilaweb.model.Actor;
-import br.com.treinarinformatica.sakilaweb.model.Film;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,4 +26,10 @@ public class ActorService {
     public void saveOrUpdate(Actor actor){
         em.persist(actor);
     }   
+    public Actor findById(Integer id){
+        return em.find(Actor.class, id);
+    }
+    public void delete(Integer id){
+        em.remove(em.find(Actor.class,id));
+    }
 }

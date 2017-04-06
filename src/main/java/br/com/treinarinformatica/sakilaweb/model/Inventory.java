@@ -12,7 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,16 +23,20 @@ import javax.persistence.Table;
  * @author ADM
  */
 @Entity
-@Table(name = "film")
-public class Film implements Serializable{
+@Table(name = "inventory")
+public class Inventory implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "film_id")
+    @Column(name ="inventory_id")
     private Integer id;
-    @Column(name = "title")
-    private String title;
-    @OneToMany(mappedBy = "film")
-    private List<Inventory> inventoryList;
+    
+    @ManyToOne
+    @JoinColumn(name = "film_id",referencedColumnName = "film_id")
+    private Film film;
+    
+    @OneToMany(mappedBy = "rental")
+    
+    private List<Rental> rentalList;
 
     /**
      * @return the id
@@ -46,33 +53,33 @@ public class Film implements Serializable{
     }
 
     /**
-     * @return the title
+     * @return the film
      */
-    public String getTitle() {
-        return title;
+    public Film getFilm() {
+        return film;
     }
 
     /**
-     * @param title the title to set
+     * @param film the film to set
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+
+    /**
+     * @return the rentalList
+     */
+    public List<Rental> getRentalList() {
+        return rentalList;
     }
 
     /**
-     * @return the inventoryList
+     * @param rentalList the rentalList to set
      */
-    public List<Inventory> getInventoryList() {
-        return inventoryList;
+    public void setRentalList(List<Rental> rentalList) {
+        this.rentalList = rentalList;
     }
-
-    /**
-     * @param inventoryList the inventoryList to set
-     */
-    public void setInventoryList(List<Inventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
-    
     
     
 }
